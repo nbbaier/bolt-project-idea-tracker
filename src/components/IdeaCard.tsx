@@ -1,0 +1,145 @@
+import React, { useState } from 'react';
+import { ProjectIdea, ProjectIdeaInput } from '@/types';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { IdeaForm } from './IdeaForm';
+import { Edit, Trash2, Calendar, Hash } from 'lucide-react';
+import { format } from 'date-fns';
+
+interface IdeaCardProps {
+  idea: ProjectIdea;
+  onUpdate: (id: string, updates: Partial<ProjectIdeaInput>) => void;
+  onDelete: (id: string) => void;
+  isUpdating?: boolean;
+  isDeleting?: boolean;
+}
+
+const priorityColors = {
+  low: 'bg-green-100 text-green-800 border-green-200',
+  medium: 'bg-amber-100 text-amber-800 border-amber-200',
+  high: 'bg-red-100 text-red-800 border-red-200',
+};
+
+export const IdeaCard: React.FC<IdeaCardProps> = ({
+  idea,
+  onUpdate,
+  onDelete,
+  isUpdating = false,
+  isDeleting = false,
+}) => {
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+
+  const handleUpdate = (updates: ProjectIdeaInput) => {
+    onUpdate(idea.id, updates);
+    setIsEditDialogOpen(false);
+  };
+
+  const formattedDate = format(new Date(idea.dateCreated), 'MMM dd, yyyy');
+
+  return (
+    <Card className="group transition-all duration-200 hover:shadow-lg hover:scale-[1.02] border-border/50">
+      <CardHeader className="pb-3">
+        <div className="flex items-start justify-between gap-3">
+          <CardTitle className="text-lg font-semibold leading-tight line-clamp-2 group-hover:text-primary transition-colors">
+            {idea.title}
+          </CardTitle>
+          <Badge 
+            variant="outline" 
+            className={`${priorityColors[idea.priority]} flex-shrink-0 font-medium`}
+          >
+            {idea.priority.charAt(0).toUpperCase() + idea.priority.slice(1)}
+          </Badge>
+        </div>
+      </CardHeader>
+
+      <CardContent className="pb-4">
+        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 mb-4">
+          {idea.description}
+        </p>
+        
+        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+          <div className="flex items-center gap-1">
+            <Calendar className="h-3 w-3" />
+            <span>{formattedDate}</span>
+          </div>
+          {idea.tags.length > 0 && (
+            <div className="flex items-center gap-1">
+              <Hash className="h-3 w-3" />
+              <span>{idea.tags.length} tag{idea.tags.length !== 1 ? 's' : ''}</span>
+            </div>
+          )}
+        </div>
+        
+        {idea.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1 mt-3">
+            {idea.tags.slice(0, 3).map((tag) => (
+              <Badge
+                key={tag}
+                variant="outline"
+                className="text-xs px-2 py-0.5 bg-muted/50"
+              >
+                {tag}
+              </Badge>
+            ))}
+            {idea.tags.length > 3 && (
+              <Badge variant="outline" className="text-xs px-2 py-0.5 bg-muted/50">
+                +{idea.tags.length - 3} more
+              </Badge>
+            )}
+          </div>
+        )}
+      </CardContent>
+
+      <CardFooter className="pt-0 flex gap-2">
+        <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+          <DialogTrigger asChild>
+            <Button variant="outline" size="sm" className="flex-1">
+              <Edit className="h-4 w-4 mr-2" />
+              Edit
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="sm:max-w-[500px]">
+            <DialogHeader>
+              <DialogTitle>Edit Project Idea</DialogTitle>
+            </DialogHeader>
+            <IdeaForm
+              onSubmit={handleUpdate}
+              isLoading={isUpdating}
+              initialValues={idea}
+              submitLabel="Update Idea"
+            />
+          </DialogContent>
+        </Dialog>
+
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="outline" size="sm" disabled={isDeleting}>
+              <Trash2 className="h-4 w-4 mr-2" />
+              Delete
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete Project Idea</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to delete "{idea.title}"? This action cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={() => onDelete(idea.id)}
+                className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              >
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </CardFooter>
+    </Card>
+  );
+};
