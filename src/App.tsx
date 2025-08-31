@@ -58,9 +58,9 @@ const AppContent: React.FC = () => {
 							</h1>
 						</div>
 					</div>
-					<div className="flex gap-2">
+					
 						<ModeToggle />
-					</div>
+					
 				</div>
 
 				{/* Stats Overview */}
