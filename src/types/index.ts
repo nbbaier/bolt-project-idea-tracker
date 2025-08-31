@@ -22,3 +22,13 @@ export interface FilterOptions {
 	selectedTags: string[];
 	priority: string;
 }
+
+export type SortOption =
+	| "dateCreated-desc"
+	| "dateCreated-asc"
+	| "dateUpdated-desc"
+	| "dateUpdated-asc"
+	| "priority-desc"
+	| "priority-asc"
+	| "title-asc"
+	| "title-desc";

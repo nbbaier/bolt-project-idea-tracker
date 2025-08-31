@@ -2,7 +2,8 @@ import type React from "react";
 import { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 import { useDeleteIdea, useUpdateIdea } from "@/hooks/useIdeas";
-import type { FilterOptions, ProjectIdea } from "@/types";
+import { sortIdeas } from "@/lib/utils";
+import type { FilterOptions, ProjectIdea, SortOption } from "@/types";
 import { IdeaCard } from "./IdeaCard";
 import { SearchFilter } from "./SearchFilter";
 
@@ -16,6 +17,8 @@ export const IdeaList: React.FC<IdeaListProps> = ({ ideas }) => {
 		selectedTags: [],
 		priority: "",
 	});
+	const [sortOption, setSortOption] =
+		useState<SortOption>("dateCreated-desc");
 
 	const updateMutation = useUpdateIdea();
 	const deleteMutation = useDeleteIdea();
@@ -33,6 +36,8 @@ export const IdeaList: React.FC<IdeaListProps> = ({ ideas }) => {
 
 		return matchesSearch && matchesTags && matchesPriority;
 	});
+
+	const sortedIdeas = sortIdeas(filteredIdeas, sortOption);
 
 	const handleUpdate = async (id: string, updates: Partial<ProjectIdea>) => {
 		try {
@@ -74,9 +79,11 @@ export const IdeaList: React.FC<IdeaListProps> = ({ ideas }) => {
 				ideas={ideas}
 				filters={filters}
 				onFiltersChange={setFilters}
+				sortOption={sortOption}
+				onSortChange={setSortOption}
 			/>
 
-			{filteredIdeas.length === 0 ? (
+			{sortedIdeas.length === 0 ? (
 				<div className="py-12 text-center">
 					<div className="mb-2 text-lg text-muted-foreground">
 						{ideas.length === 0
@@ -91,7 +98,7 @@ export const IdeaList: React.FC<IdeaListProps> = ({ ideas }) => {
 				</div>
 			) : (
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-					{filteredIdeas.map((idea) => (
+					{sortedIdeas.map((idea) => (
 						<IdeaCard
 							key={idea.id}
 							idea={idea}
