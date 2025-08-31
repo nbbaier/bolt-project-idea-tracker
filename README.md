@@ -1,19 +1,11 @@
 # Project Idea Tracker
 
-> A modern, responsive web application for tracking and managing project ideas
+A modern, responsive web application for tracking and managing project ideas
 
 [![Built with React](https://img.shields.io/badge/React-18+-61DAFB?style=flat&logo=react)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5+-3178C6?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.4+-646CFF?style=flat&logo=vite)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4+-06B6D4?style=flat&logo=tailwindcss)](https://tailwindcss.com/)
-
-A beautifully crafted web application for tracking and organizing your project ideas, built with modern React, TypeScript, and styled with Tailwind CSS. Features a clean, intuitive interface with real-time search, filtering, and comprehensive project management capabilities.
-
-## 🎯 Live Demo
-
-![Project Idea Tracker Screenshot](https://github.com/user-attachments/assets/31764d80-976e-427a-bcd1-d640c2109d12)
-
-*Clean, modern interface with statistics dashboard and powerful filtering capabilities*
 
 ## ✨ Features
 
