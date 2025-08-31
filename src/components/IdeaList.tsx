@@ -4,6 +4,7 @@ import { toast } from "@/hooks/use-toast";
 import { useDeleteIdea, useUpdateIdea } from "@/hooks/useIdeas";
 import { sortIdeas } from "@/lib/utils";
 import type { FilterOptions, ProjectIdea, SortOption } from "@/types";
+import { AddIdeaCard } from "./AddIdeaCard";
 import { IdeaCard } from "./IdeaCard";
 import { SearchFilter } from "./SearchFilter";
 
@@ -97,6 +98,7 @@ export const IdeaList: React.FC<IdeaListProps> = ({ ideas }) => {
 				</div>
 			) : (
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+					<AddIdeaCard />
 					{sortedIdeas.map((idea) => (
 						<IdeaCard
 							key={idea.id}

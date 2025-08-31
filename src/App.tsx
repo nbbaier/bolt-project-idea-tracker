@@ -1,7 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Lightbulb, Loader2 } from "lucide-react";
 import type React from "react";
-import { AddIdeaDialog } from "@/components/AddIdeaDialog";
 import { IdeaList } from "@/components/IdeaList";
 import { Layout } from "@/components/Layout";
 import { Toaster } from "@/components/ui/toaster";
@@ -60,7 +59,6 @@ const AppContent: React.FC = () => {
 						</div>
 					</div>
 					<div className="flex gap-2">
-						<AddIdeaDialog />
 						<ModeToggle />
 					</div>
 				</div>
