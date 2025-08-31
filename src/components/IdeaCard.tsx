@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { Calendar, Edit, Hash, Trash2 } from "lucide-react";
+import { Calendar, Edit, Trash2 } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
 import {
@@ -63,8 +63,8 @@ export const IdeaCard: React.FC<IdeaCardProps> = ({
 	const formattedDate = format(new Date(idea.dateCreated), "MMM dd, yyyy");
 
 	return (
-		<Card className="group transition-all duration-200 hover:shadow-lg hover:scale-[1.02] border-border/50">
-			<CardHeader className="pb-3">
+		<Card className="group transition-all duration-200 hover:scale-[1.02] border-border/50 rounded-md">
+			<CardHeader className="pb-3 hover:text-red-sm">
 				<div className="flex gap-3 justify-between items-start">
 					<CardTitle className="text-lg font-semibold leading-tight transition-colors line-clamp-2 group-hover:text-primary">
 						{idea.title}
@@ -80,7 +80,7 @@ export const IdeaCard: React.FC<IdeaCardProps> = ({
 
 			<CardContent className="pb-4">
 				<p className="mb-4 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-					{idea.description}
+					{idea.description || <span className="italic">No description</span>}
 				</p>
 
 				<div className="flex gap-4 items-center text-xs text-muted-foreground">
@@ -88,14 +88,6 @@ export const IdeaCard: React.FC<IdeaCardProps> = ({
 						<Calendar className="w-3 h-3" />
 						<span>{formattedDate}</span>
 					</div>
-					{idea.tags.length > 0 && (
-						<div className="flex gap-1 items-center">
-							<Hash className="w-3 h-3" />
-							<span>
-								{idea.tags.length} tag{idea.tags.length !== 1 ? "s" : ""}
-							</span>
-						</div>
-					)}
 				</div>
 
 				{idea.tags.length > 0 && (

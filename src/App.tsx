@@ -4,7 +4,6 @@ import type React from "react";
 import { AddIdeaDialog } from "@/components/AddIdeaDialog";
 import { IdeaList } from "@/components/IdeaList";
 import { Layout } from "@/components/Layout";
-import { StatsOverview } from "@/components/StatsOverview";
 import { Toaster } from "@/components/ui/toaster";
 import { useIdeas } from "@/hooks/useIdeas";
 import { ModeToggle } from "./components/ThemeToggle";
@@ -49,7 +48,7 @@ const AppContent: React.FC = () => {
 		<Layout>
 			<div className="py-8 space-y-8">
 				{/* Header */}
-				<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+				<div className="flex flex-col gap-4 rounded-lg sm:justify-between sm:flex-row sm:items-center">
 					<div className="flex gap-5 items-center">
 						<div className="p-2 rounded-lg bg-primary/10">
 							<Lightbulb className="w-6 h-6 text-primary" />
@@ -67,9 +66,9 @@ const AppContent: React.FC = () => {
 				</div>
 
 				{/* Stats Overview */}
-				<div>
+				{/* <div>
 					<StatsOverview ideas={ideas} />
-				</div>
+				</div> */}
 
 				{/* Ideas List */}
 				<div>

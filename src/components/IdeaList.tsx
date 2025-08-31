@@ -17,8 +17,7 @@ export const IdeaList: React.FC<IdeaListProps> = ({ ideas }) => {
 		selectedTags: [],
 		priority: "",
 	});
-	const [sortOption, setSortOption] =
-		useState<SortOption>("dateCreated-desc");
+	const [sortOption, setSortOption] = useState<SortOption>("dateCreated-desc");
 
 	const updateMutation = useUpdateIdea();
 	const deleteMutation = useDeleteIdea();
