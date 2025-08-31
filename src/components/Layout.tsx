@@ -1,4 +1,5 @@
 import type React from "react";
+import { ModeToggle } from "./ThemeToggle";
 
 interface LayoutProps {
 	children: React.ReactNode;
@@ -7,6 +8,9 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
 	return (
 		<div className="min-h-screen bg-background">
+			<div className="absolute top-4 right-4">
+				<ModeToggle />
+			</div>
 			<div className="px-4 mx-auto w-full max-w-4xl sm:px-6 lg:px-8">
 				{children}
 			</div>
