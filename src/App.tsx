@@ -47,7 +47,7 @@ const AppContent: React.FC = () => {
 		<Layout>
 			<div className="py-8 space-y-8">
 				{/* Header */}
-				<div className="flex flex-col gap-4 rounded-lg sm:justify-between sm:flex-row sm:items-center">
+				<div className="flex flex-col gap-4 rounded-lg sm:justify-between sm:flex-row sm:items-center border">
 					<div className="flex gap-5 items-center">
 						<div className="p-2 rounded-lg bg-primary/10">
 							<Lightbulb className="w-6 h-6 text-primary" />
