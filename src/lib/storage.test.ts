@@ -1,6 +1,6 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import { storageApi } from "./storage";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import type { ProjectIdea, ProjectIdeaInput } from "@/types";
+import { storageApi } from "./storage";
 
 // Mock localStorage
 const createLocalStorageMock = () => {
@@ -41,7 +41,7 @@ describe("storageApi", () => {
 			id: "1",
 			title: "Test Idea 1",
 			description: "Description 1",
-			status: "new",
+			priority: "low",
 			tags: ["react"],
 			dateCreated: new Date().toISOString(),
 			dateUpdated: new Date().toISOString(),
@@ -50,7 +50,7 @@ describe("storageApi", () => {
 			id: "2",
 			title: "Test Idea 2",
 			description: "Description 2",
-			status: "in-progress",
+			priority: "medium",
 			tags: ["typescript"],
 			dateCreated: new Date().toISOString(),
 			dateUpdated: new Date().toISOString(),
@@ -81,7 +81,7 @@ describe("storageApi", () => {
 			const newIdeaInput: ProjectIdeaInput = {
 				title: "New Idea",
 				description: "New Description",
-				status: "new",
+				priority: "low",
 				tags: ["new"],
 			};
 			const newIdea = storageApi.createIdea(newIdeaInput);
