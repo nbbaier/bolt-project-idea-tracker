@@ -7,6 +7,7 @@ import { Layout } from "@/components/Layout";
 import { StatsOverview } from "@/components/StatsOverview";
 import { Toaster } from "@/components/ui/toaster";
 import { useIdeas } from "@/hooks/useIdeas";
+import { ModeToggle } from "./components/ThemeToggle";
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -24,7 +25,7 @@ const AppContent: React.FC = () => {
 		return (
 			<Layout>
 				<div className="text-center">
-					<Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-primary" />
+					<Loader2 className="mx-auto mb-4 w-8 h-8 animate-spin text-primary" />
 					<p className="text-muted-foreground">Loading your project ideas...</p>
 				</div>
 			</Layout>
@@ -35,7 +36,7 @@ const AppContent: React.FC = () => {
 		return (
 			<Layout>
 				<div className="text-center">
-					<p className="text-destructive mb-4">Failed to load project ideas</p>
+					<p className="mb-4 text-destructive">Failed to load project ideas</p>
 					<p className="text-sm text-muted-foreground">
 						Please refresh the page to try again
 					</p>
@@ -48,10 +49,10 @@ const AppContent: React.FC = () => {
 		<Layout>
 			<div className="py-8 space-y-8">
 				{/* Header */}
-				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-					<div className="flex items-center gap-5">
-						<div className="p-2 bg-primary/10 rounded-lg">
-							<Lightbulb className="h-6 w-6 text-primary" />
+				<div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+					<div className="flex gap-5 items-center">
+						<div className="p-2 rounded-lg bg-primary/10">
+							<Lightbulb className="w-6 h-6 text-primary" />
 						</div>
 						<div>
 							<h1 className="text-3xl font-bold tracking-tight">
@@ -59,7 +60,10 @@ const AppContent: React.FC = () => {
 							</h1>
 						</div>
 					</div>
-					<AddIdeaDialog />
+					<div className="flex gap-2">
+						<AddIdeaDialog />
+						<ModeToggle />
+					</div>
 				</div>
 
 				{/* Stats Overview */}
