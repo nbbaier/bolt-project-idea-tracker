@@ -40,11 +40,22 @@ export const AddIdeaCard: React.FC = () => {
 		}
 	};
 
+	const handleKeyDown = (e: React.KeyboardEvent) => {
+		if (e.key === "Enter" || e.key === " ") {
+			e.preventDefault();
+			setIsOpen(true);
+		}
+	};
+
 	return (
 		<>
 			<Card 
 				className="group cursor-pointer transition-all duration-200 hover:scale-[1.02] border-dashed border-2 border-primary/30 bg-primary/5 hover:bg-primary/10 hover:border-primary/50"
 				onClick={() => setIsOpen(true)}
+				onKeyDown={handleKeyDown}
+				tabIndex={0}
+				role="button"
+				aria-label="Add new project idea"
 			>
 				<CardHeader className="pb-3">
 					<CardTitle className="flex items-center gap-3 text-lg font-semibold text-primary">
