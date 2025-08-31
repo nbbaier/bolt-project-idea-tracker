@@ -84,18 +84,16 @@ export const IdeaList: React.FC<IdeaListProps> = ({ ideas }) => {
 			/>
 
 			{sortedIdeas.length === 0 ? (
-				<div className="py-12 text-center">
-					<div className="mb-2 text-lg text-muted-foreground">
-						{ideas.length === 0
-							? "No project ideas yet"
-							: "No ideas match your filters"}
+				ideas.length > 0 && (
+					<div className="py-12 text-center">
+						<div className="mb-2 text-lg text-muted-foreground">
+							No ideas match your filters
+						</div>
+						<p className="text-sm text-muted-foreground">
+							Try adjusting your search or filter criteria.
+						</p>
 					</div>
-					<p className="text-sm text-muted-foreground">
-						{ideas.length === 0
-							? "Add your first project idea to get started!"
-							: "Try adjusting your search or filter criteria."}
-					</p>
-				</div>
+				)
 			) : (
 				<div className="grid grid-cols-1 gap-6 md:grid-cols-2">
 					<AddIdeaCard />
