@@ -47,21 +47,25 @@ const AppContent: React.FC = () => {
 		<Layout>
 			<div className="py-8 space-y-8">
 				{/* Header */}
-				<div className="flex items-center justify-between gap-4 rounded-lg">
-					<div className="flex gap-5 items-center">
-						<div className="p-2 rounded-lg bg-primary/10">
-							<Lightbulb className="w-6 h-6 text-primary" />
-						</div>
-						<div>
-							<h1 className="text-3xl font-bold tracking-tight">
-								Project Ideas
-							</h1>
-						</div>
-					</div>
-					
-						<ModeToggle />
-					
-				</div>
+
+    {/* Header */}
+    <div className="flex items-center justify-between gap-4 rounded-lg">
+        <div className="flex gap-5 items-center">
+            <div className="p-2 rounded-lg bg-primary/10">
+                <Lightbulb className="w-6 h-6 text-primary" />
+            </div>
+            <div>
+                <h1 className="text-3xl font-bold tracking-tight">
+                    Project Ideas
+                </h1>
+            </div>
+        </div>
+        <div className="mt-1">
+            <ModeToggle />
+        </div>
+    </div>
+
+
 
 				{/* Stats Overview */}
 				{/* <div>
