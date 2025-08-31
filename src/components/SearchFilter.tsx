@@ -10,18 +10,22 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select";
-import type { FilterOptions, ProjectIdea } from "@/types";
+import type { FilterOptions, ProjectIdea, SortOption } from "@/types";
 
 interface SearchFilterProps {
 	ideas: ProjectIdea[];
 	filters: FilterOptions;
 	onFiltersChange: (filters: FilterOptions) => void;
+	sortOption: SortOption;
+	onSortChange: (sortOption: SortOption) => void;
 }
 
 export const SearchFilter: React.FC<SearchFilterProps> = ({
 	ideas,
 	filters,
 	onFiltersChange,
+	sortOption,
+	onSortChange,
 }) => {
 	const allTags = Array.from(new Set(ideas.flatMap((idea) => idea.tags)));
 
@@ -101,6 +105,35 @@ export const SearchFilter: React.FC<SearchFilterProps> = ({
 								<SelectItem value="high">High Priority</SelectItem>
 								<SelectItem value="medium">Medium Priority</SelectItem>
 								<SelectItem value="low">Low Priority</SelectItem>
+							</SelectContent>
+						</Select>
+					</div>
+					<div className="flex-1">
+						<Select value={sortOption} onValueChange={onSortChange}>
+							<SelectTrigger>
+								<SelectValue placeholder="Sort by" />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value="dateCreated-desc">
+									Date Created (Newest First)
+								</SelectItem>
+								<SelectItem value="dateCreated-asc">
+									Date Created (Oldest First)
+								</SelectItem>
+								<SelectItem value="dateUpdated-desc">
+									Date Updated (Newest First)
+								</SelectItem>
+								<SelectItem value="dateUpdated-asc">
+									Date Updated (Oldest First)
+								</SelectItem>
+								<SelectItem value="priority-desc">
+									Priority (High to Low)
+								</SelectItem>
+								<SelectItem value="priority-asc">
+									Priority (Low to High)
+								</SelectItem>
+								<SelectItem value="title-asc">Title (A-Z)</SelectItem>
+								<SelectItem value="title-desc">Title (Z-A)</SelectItem>
 							</SelectContent>
 						</Select>
 					</div>
