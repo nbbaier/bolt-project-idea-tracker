@@ -57,9 +57,6 @@ const AppContent: React.FC = () => {
 							<h1 className="text-3xl font-bold tracking-tight">
 								Project Ideas
 							</h1>
-							<p className="text-muted-foreground">
-								Capture and organize your creative project concepts
-							</p>
 						</div>
 					</div>
 					<AddIdeaDialog />
