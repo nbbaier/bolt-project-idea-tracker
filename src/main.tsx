@@ -8,9 +8,9 @@ const rootElement = document.getElementById("root");
 if (rootElement) {
 	createRoot(rootElement).render(
 		<StrictMode>
-			<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+			<ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
 				<App />
 			</ThemeProvider>
-		</StrictMode>
+		</StrictMode>,
 	);
 }

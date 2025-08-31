@@ -39,7 +39,7 @@ export const AddIdeaDialog: React.FC = () => {
 	return (
 		<Dialog open={isOpen} onOpenChange={setIsOpen}>
 			<DialogTrigger asChild>
-				<Button className="shadow-lg transition-shadow hover:shadow-xl">
+				<Button className="shadow-lg transition-shadow hover:shadow-md">
 					<Plus className="mr-2 w-4 h-4" />
 					Add New Idea
 				</Button>
