@@ -65,12 +65,6 @@ const AppContent: React.FC = () => {
 					</div>
 				</div>
 
-				{/* Stats Overview */}
-				{/* <div>
-					<StatsOverview ideas={ideas} />
-				</div> */}
-
-				{/* Ideas List */}
 				<div>
 					<IdeaList ideas={ideas} />
 				</div>
