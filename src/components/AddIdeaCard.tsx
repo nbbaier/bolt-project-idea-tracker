@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
 	Card,
 	CardContent,
@@ -72,18 +73,37 @@ export const AddIdeaCard: React.FC = () => {
 				</CardContent>
 			</Card>
 
-			<Dialog open={isOpen} onOpenChange={setIsOpen}>
-				<DialogContent className="sm:max-w-[500px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] duration-300">
-					<DialogHeader>
-						<DialogTitle>Add New Project Idea</DialogTitle>
-					</DialogHeader>
-					<IdeaForm
-						onSubmit={handleSubmit}
-						isLoading={createMutation.isPending}
-						submitLabel="Add Idea"
-					/>
-				</DialogContent>
-			</Dialog>
+			<AnimatePresence>
+				{isOpen && (
+					<Dialog open={isOpen} onOpenChange={setIsOpen}>
+						<DialogContent className="sm:max-w-[500px] p-0 overflow-hidden">
+							<motion.div
+								initial={{ opacity: 0, scale: 0.95, y: -10 }}
+								animate={{ opacity: 1, scale: 1, y: 0 }}
+								exit={{ opacity: 0, scale: 0.95, y: -10 }}
+								transition={{ 
+									type: "spring", 
+									stiffness: 300, 
+									damping: 30,
+									duration: 0.3
+								}}
+								className="p-6"
+							>
+								<DialogHeader>
+									<DialogTitle>Add New Project Idea</DialogTitle>
+								</DialogHeader>
+								<div className="mt-4">
+									<IdeaForm
+										onSubmit={handleSubmit}
+										isLoading={createMutation.isPending}
+										submitLabel="Add Idea"
+									/>
+								</div>
+							</motion.div>
+						</DialogContent>
+					</Dialog>
+				)}
+			</AnimatePresence>
 		</>
 	);
 };
